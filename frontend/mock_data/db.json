@@ -1,19 +1,18 @@
 {
   "tiersList": [
     {
-      "id": "1",
+      "id:": "1",
       "name": "Tier 1"
     },
     {
-      "id": "2",
+      "id:": "2",
       "name": "Tier 2"
     },
     {
-      "id": "3",
+      "id:": "3",
       "name": "Tier 3"
     }
   ],
-
   "tiers": [
     {
       "id": "1",

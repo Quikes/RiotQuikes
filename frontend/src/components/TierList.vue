@@ -6,7 +6,7 @@
         :key="i"
         :title="item.name"
         :text="JSON.stringify(item)"
-        @click="fetchTier(item.id)"
+        @click="fetchDetail('1')"
       >
       </v-expansion-panel>
     </v-expansion-panels>
@@ -15,7 +15,8 @@
 
 <script>
 import { toRaw } from "vue";
-import { retrieveData } from "../utils/api.js";
+import { retrieveData } from "@/utils/api";
+
 export default {
   name: "TierList",
   data() {
@@ -24,18 +25,18 @@ export default {
     };
   },
   methods: {
-    async fetchTiersList() {
-      this.tiers = await retrieveData(`tiersList`);
+    async fetchTiers() {
+      this.tiers = await retrieveData("images");
     },
-    async fetchTier(id) {
-      const tier = await retrieveData(`tiers/${id}`);
-      this.tiers = this.tiers.map((item) =>
-        toRaw(item).id === id ? tier : item
-      );
+    async fetchDetail(id) {
+      const tier = await retrieveData(`images/${id}`);
+      this.tiers = this.tiers.map((item) => {
+        return toRaw(item).id === id ? tier : item;
+      });
     },
   },
   mounted() {
-    this.fetchTiersList();
+    this.fetchTiers();
   },
 };
 </script>

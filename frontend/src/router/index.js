@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import TierList from "../components/TierList.vue";
+import TierList from "@/components/TierList";
 
 const routes = [
   {

@@ -8,21 +8,31 @@ services:
       - backend
     networks:
       - backend-network
+      - frontend-network
+    container_name: proxy
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend/src:/app/src
+    networks:
+      - frontend-network
+    stdin_open: true
+    container_name: vue
   backend:
-    environment:
-      PYTHONUNBUFFERED: 1
     build: ./backend
     ports:
       - "8000:8000"
-    restart: "on-failure"
     container_name: django
+    restart: "on-failure"
     volumes:
       - ./backend:/app
       - static_volume:/app/staticfiles
       - media_volume:/app/media
     env_file:
       - ./backend/env/.env
-    
     depends_on:
       - db-postgres
       - db-cache
@@ -30,31 +40,29 @@ services:
       - backend-network
       - db-postgres-network
       - db-cache-network
-
   db-postgres:
     image: postgres
-    ports: 
+    ports:
       - "5434:5432"
     env_file:
       - ./backend/env/.env
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres-dj:/var/lib/postgresql/data
     container_name: postgres_django
     networks:
-    - db-postgres-network
-
+      - db-postgres-network
   db-cache:
     image: redis:alpine
-    ports: 
+    ports:
       - "6379:6379"
     volumes:
       - redisdata:/data
     networks:
       - db-cache-network
-
+    container_name: redis_django
 
 volumes:
-  postgres:
+  postgres-dj:
   redisdata:
   static_volume:
   media_volume:
@@ -62,8 +70,9 @@ volumes:
 networks:
   backend-network:
     driver: bridge
+  frontend-network:
+    driver: bridge
   db-postgres-network:
     driver: bridge
   db-cache-network:
     driver: bridge
-
