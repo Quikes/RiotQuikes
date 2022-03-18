@@ -18,6 +18,7 @@ class ImageViewset(viewsets.ModelViewSet):
 
 
     def get_queryset(self):
+        
         user = self.request.user
         return Image.objects.filter(author=user)
 

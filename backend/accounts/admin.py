@@ -10,5 +10,5 @@ CustomUser = get_user_model()
 class CustomUserAdmin(UserAdmin):
     model = get_user_model()
 
-
+    exclude_fields = ('password',)
 admin.site.register(CustomUser,CustomUserAdmin)

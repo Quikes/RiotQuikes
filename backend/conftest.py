@@ -30,6 +30,7 @@ def remove_test_data():
 @pytest.fixture(scope='function')
 @override_settings(MEDIA_ROOT=(os.path.join(os.environ.get('TEST_DIR'), 'media')))
 def test_image(user):
+    
     image = Image.objects.create(
         author=user,
         url=SimpleUploadedFile('test_image.jpg', content=open(os.path.join('test', 'test_image.jpg'), 'rb').read())

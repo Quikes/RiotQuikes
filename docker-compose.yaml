@@ -9,6 +9,8 @@ services:
     networks:
       - backend-network
   backend:
+    environment:
+      PYTHONUNBUFFERED: 1
     build: ./backend
     ports:
       - "8000:8000"
@@ -64,3 +66,4 @@ networks:
     driver: bridge
   db-cache-network:
     driver: bridge
+

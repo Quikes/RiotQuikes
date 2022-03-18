@@ -1,12 +1,15 @@
-FROM python:3.10
 
+FROM python:3.10
+ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 COPY Pipfile Pipfile.lock ./
 RUN pip install pipenv && pipenv install --system
 
 COPY . .
-CMD python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+
+
+CMD python manage.py makemigrations && python manage.py migrate && python -u manage.py runserver 0.0.0.0:8000
 
 
 

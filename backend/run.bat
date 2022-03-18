@@ -4,7 +4,7 @@ set POSTGRES_DB=postgres
 set DATABASE_URL=postgres://postgres:password@db-postgres:5432/postgres
 
 set DEBUG=1
-set SECRET_KEY=django-insecure-ye9^i&m__*92n$veag$^jn3kkh9$3dh=ml_x9ab^-%#(p_vl2#
+set SECRET_KEY="django-insecure-ye9^i&m__*92n$veag$^jn3kkh9$3dh=ml_x9ab^-%#(p_vl2#"
 set DJANGO_ALLOWED_HOSTS='backend localhost 127.0.0.1'
 
 set DJANGO_SU_NAME=testAdmin
@@ -13,4 +13,9 @@ set DJANGO_SU_PASSWORD=testPass123
 
 set TEST_DIR='test'
 
-python manage.py runserver 0.0.0.0:8001
+set REDIS_HOST=db-cache
+set REDIS_PORT=6379
+
+set RIOT_API_KEY=RGAPI-44cef576-0d66-4bd9-8414-be33eae5c322
+
+python manage.py runserver
