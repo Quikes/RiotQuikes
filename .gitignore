@@ -3,3 +3,4 @@ db.sqlite3
 .vscode
 **/*.pyc
 env/.env
+backend/env/.env
