@@ -1,16 +1,11 @@
-FROM node:16-alpine as build
+FROM node:16-alpine
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json yarn.lock ./
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
-RUN npm run build
-
-FROM nginx
-COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist /usr/share/nginx/html
-
+CMD npm run lint && npm run serve

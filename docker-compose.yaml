@@ -10,17 +10,21 @@ services:
       - backend-network
       - frontend-network
     container_name: proxy
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./frontend/src:/app/src
-    networks:
-      - frontend-network
-    stdin_open: true
-    container_name: vue
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   volumes:
+  #     - ./frontend:/app
+  #     - /app/node_modules
+  #   networks:
+  #     - frontend-network
+  #   stdin_open: true
+  #   container_name: nuxt
+
   backend:
     build: ./backend
     ports:

@@ -4,6 +4,6 @@ from . import views
 
 router = SimpleRouter()
 
-router.register('accounts',views.CustomUserViewset, basename='accounts')
+router.register("users", views.CustomUserViewset, basename="users")
 
 urlpatterns = router.urls
