@@ -34,15 +34,15 @@ class CustomUserViewset(viewsets.ModelViewSet):
         user = get_user_model().objects.get(pk=pk)
         if user:
             request_data = json.loads(request.body)
-            print(request_data)
+
             user.riot_name = request_data.get("riot_name")
             user.save()
             user = user_update(user)
 
-            print(user)
-
             if type(user) is str:
-                print("no cos nie teges kurewko")
+                if user == "User is up to date.":
+                    return HttpResponseBadRequest("User is already up to date.")
+
                 return HttpResponseBadRequest("Something went super wrong")
 
             serializer = self.get_serializer_class()

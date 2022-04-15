@@ -18,7 +18,7 @@ from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 
 
-class SummonerSimpleDataSoloViewset(viewsets):
+class SummonerSimpleDataSoloViewset(viewsets.ModelViewSet):
     Authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = [permissions.IsAuthenticated]
     serializer = SummonerSimpleDataSoloSerializer
@@ -27,7 +27,7 @@ class SummonerSimpleDataSoloViewset(viewsets):
         user = self.request.user
         if user is None:
             pass
-        return SummonerSimpleDataSolo.objects.filter(id=user.id)
+        return SummonerSimpleDataSolo.objects.filter(user=user)
 
     # @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
     # def update_user_from_riotusername(self, request,pk=None):
@@ -45,7 +45,7 @@ class SummonerSimpleDataSoloViewset(viewsets):
     def get_serializer_class(self):
         # if self.action=='update_user_from_riotusername':
         #     return SummonerSimpleDataSolo
-        return SummonerSimpleDataSolo
+        return SummonerSimpleDataSoloSerializer
 
 
 class SummonerSimpleDataFlexViewset(viewsets.ModelViewSet):
@@ -55,7 +55,7 @@ class SummonerSimpleDataFlexViewset(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return SummonerSimpleDataFlex.objects.filter(id=user.id)
+        return SummonerSimpleDataFlex.objects.filter(user=user)
 
     def get_serializer_class(self):
-        return SummonerSimpleDataFlexViewset
+        return SummonerSimpleDataFlexSerializer

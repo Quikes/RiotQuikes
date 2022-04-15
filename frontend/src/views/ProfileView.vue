@@ -1,19 +1,18 @@
 <template>
-  <v-card elevation="1" class="ma-16">
-    <v-card-title>{{ this.currentUser.username }} profile</v-card-title>
-    <v-card-text>
-      {{
-        this.currentUser.riot_name
-          ? this.currentUser.riot_name
-          : this.new_summoner_name
-      }}</v-card-text
-    >
-    <input
-      class="input_text"
-      v-model="new_summoner_name"
-      placeholder="edit me"
-      color="rgb(255,255,255)"
-    />
+  <v-card elevation="1" class="ma-16" max-width="450">
+    <v-row>
+      <v-col sm="4">
+        <v-card-title>{{ this.currentUser.riot_name }} </v-card-title>
+        <v-card-text> : {{ this.currentUser.riot_name }} Test</v-card-text>
+        <input
+          class="input_text"
+          v-model="new_summoner_name"
+          placeholder="edit me"
+          color="rgb(255,255,255)"
+        />
+      </v-col>
+      <v-col>test</v-col>
+    </v-row>
     <v-card-actions>
       <v-btn
         @click="

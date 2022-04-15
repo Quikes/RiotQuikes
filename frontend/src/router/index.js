@@ -14,7 +14,7 @@ const routes = [
     path: "/",
     name: "LandingPage",
     component: LandingPage,
-    meta: { layout: "MainLayout" },
+    meta: { layout: "DefLayout" },
   },
   {
     path: "/login",
@@ -38,7 +38,7 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: ProfileView,
-    meta: { title: "- profile" },
+    meta: { title: "- profile", layout: "DefLayout" },
   },
   {
     path: "/polityka",

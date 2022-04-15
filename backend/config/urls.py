@@ -37,6 +37,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/accounts/", include("django.contrib.auth.urls")),
     path("api/v1/", include("images.urls")),
+    path("api/v1/", include("riot_api.urls")),
     path(
         "swagger/",
         schema_view.with_ui("swagger", cache_timeout=0),

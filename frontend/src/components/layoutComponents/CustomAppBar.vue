@@ -4,7 +4,7 @@
       <v-app-bar color="primary" density="compact">
         <v-app-bar-title>Riot Api Testing</v-app-bar-title>
         <template v-slot:append>
-          <v-btn icon="mdi-dots-vertical"></v-btn>
+          <v-btn icon="mdi-account-circle" @click="goTo('/profile')"></v-btn>
         </template>
       </v-app-bar>
 
